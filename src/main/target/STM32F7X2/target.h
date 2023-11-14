@@ -35,6 +35,9 @@
 #define USE_UART5
 #define USE_UART6
 
+//led used
+#define USE_LED_STRIP
+
 #define SERIAL_PORT_COUNT       (UNIFIED_SERIAL_PORT_COUNT + 6)
 
 #define USE_SPI_DEVICE_1
