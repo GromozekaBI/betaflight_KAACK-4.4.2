@@ -42,7 +42,8 @@ extern const char * const osdTimerSourceNames[OSD_NUM_TIMER_TYPES];
 #define OSD_PROFILE_COUNT 1
 #endif
 
-#define OSD_RCCHANNELS_COUNT 16
+//We output the first 12 channels to the OSD
+#define OSD_RCCHANNELS_COUNT 12
 
 #define OSD_CAMERA_FRAME_MIN_WIDTH  2
 #define OSD_CAMERA_FRAME_MAX_WIDTH  30    // Characters per row supportes by MAX7456
