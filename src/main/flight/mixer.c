@@ -379,7 +379,7 @@ static void applyRpmLimiter(mixerRuntime_t *mixer)
     //DEBUG_SET(DEBUG_RPM_LIMIT, 3, lrintf(throttle * 100.0f)); //текущее значение газа
     float dynamic = rcCommand[THROTTLE] - PWM_RANGE_MIN + throttleAngleCorrection;
     dynamic = constrainf(throttle / (PWM_RANGE_MAX - PWM_RANGE_MIN), 0.0f, 1.0f);
-    DEBUG_SET(DEBUG_RPM_LIMIT, 3, lrintf(dynamic * 10.0f)); //текущее 5 AUX канала
+    DEBUG_SET(DEBUG_RPM_LIMIT, 3, lrintf(dynamic * 100.0f)); //текущее 5 AUX канала
 }
 #endif // USE_RPM_LIMIT
 
