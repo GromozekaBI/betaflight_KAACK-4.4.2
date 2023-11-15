@@ -40,6 +40,7 @@
 uint16_t rpm_limit_value;
 uint16_t motor_kv;
 bool rpm_limit;
+//bool dynamic_rpm_limit;
 
 static const void *cmsx_RpmLimit_onEnter(displayPort_t *pDisp)
 {
@@ -48,6 +49,9 @@ static const void *cmsx_RpmLimit_onEnter(displayPort_t *pDisp)
     rpm_limit_value = mixerConfig()->rpm_limit_value;
     motor_kv = motorConfig()->kv;
     rpm_limit = mixerConfig()->rpm_limit;
+    dynamic_rpm_limit = mixerConfig()->dynamic_rpm_limit; // Считывание default значение
+    min_dynamic_rpm_limit_value = mixerConfig()->min_dynamic_rpm_limit_value; // Считывание default значение
+    max_dynamic_rpm_limit_value = mixerConfig()->max_dynamic_rpm_limit_value; // Считывание default значение
 
     return NULL;
 }
@@ -60,6 +64,9 @@ static const void *cmsx_RpmLimit_onExit(displayPort_t *pDisp, const OSD_Entry *s
     mixerConfigMutable()->rpm_limit_value = rpm_limit_value;
     motorConfigMutable()->kv = motor_kv;
     mixerConfigMutable()->rpm_limit = rpm_limit;
+    mixerConfigMutable()->dynamic_rpm_limit = dynamic_rpm_limit; // установка значение через OSD
+    mixerConfigMutable()->min_dynamic_rpm_limit_value = min_dynamic_rpm_limit_value; // установка значение через OSD
+    mixerConfigMutable()->max_dynamic_rpm_limit_value = max_dynamic_rpm_limit_value; // установка значение через OSD
 
     return NULL;
 }
@@ -68,7 +75,10 @@ static const OSD_Entry cmsx_menuRpmLimitEntries[] =
 {
     {"-- RPM LIMIT --", OME_Label, NULL, NULL},
     { "ACTIVE",   OME_Bool | REBOOT_REQUIRED,  NULL, &rpm_limit },
-    {"MAX RPM", OME_UINT16, NULL, &(OSD_UINT16_t){ &rpm_limit_value, 0, UINT16_MAX, 100}},
+    { "DYNAMIC",   OME_Bool | REBOOT_REQUIRED,  NULL, &dynamic_rpm_limit }, // Включение DYNAMIC RPM
+    {"CONST RPM", OME_UINT16, NULL, &(OSD_UINT16_t){ &rpm_limit_value, 0, UINT16_MAX, 100}},
+    {"MAX RPM", OME_UINT16, NULL, &(OSD_UINT16_t){ &max_dynamic_rpm_limit_value, 0, UINT16_MAX, 100}}, // тут можно задать MAX значение
+    {"MIN RPM", OME_UINT16, NULL, &(OSD_UINT16_t){ &min_dynamic_rpm_limit_value, 0, UINT16_MAX, 100}}, // тут можно задать MIN значение
     {"KV", OME_UINT16, NULL, &(OSD_UINT16_t){ &motor_kv, 0, UINT16_MAX, 1}},
 
     { "SAVE&REBOOT",     OME_OSD_Exit, cmsMenuExit,   (void *)CMS_POPUP_SAVEREBOOT},

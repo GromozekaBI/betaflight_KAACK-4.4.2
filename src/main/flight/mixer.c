@@ -373,10 +373,10 @@ static void applyRpmLimiter(mixerRuntime_t *mixer)
     throttle = constrainf(throttle - pidOutput, 0.0f, 1.0f);
     prevError = error;
 
-    DEBUG_SET(DEBUG_RPM_LIMIT, 0, lrintf(averageRpm));
-    DEBUG_SET(DEBUG_RPM_LIMIT, 1, lrintf(unsmoothedAverageRpm));
-    DEBUG_SET(DEBUG_RPM_LIMIT, 2, lrintf(mixer->rpmLimiterThrottleScale * 100.0f));
-    DEBUG_SET(DEBUG_RPM_LIMIT, 3, lrintf(throttle * 100.0f));
+    DEBUG_SET(DEBUG_RPM_LIMIT, 0, lrintf(averageRpm)); // средние обороты на 4х двигателях
+    DEBUG_SET(DEBUG_RPM_LIMIT, 1, lrintf(unsmoothedAverageRpm)); // c учетом фильтрации
+    DEBUG_SET(DEBUG_RPM_LIMIT, 2, lrintf(mixer->rpmLimiterThrottleScale * 100.0f)); // текущий расчетный предел дросельной заслонки
+    DEBUG_SET(DEBUG_RPM_LIMIT, 3, lrintf(throttle * 100.0f)); //текущее значение газа
 }
 #endif // USE_RPM_LIMIT
 
