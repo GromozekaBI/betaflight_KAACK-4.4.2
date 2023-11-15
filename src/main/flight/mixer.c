@@ -378,8 +378,9 @@ static void applyRpmLimiter(mixerRuntime_t *mixer)
     DEBUG_SET(DEBUG_RPM_LIMIT, 2, lrintf(mixer->rpmLimiterThrottleScale * 100.0f)); // текущий расчетный предел дросельной заслонки
     //DEBUG_SET(DEBUG_RPM_LIMIT, 3, lrintf(throttle * 100.0f)); //текущее значение газа
     int dynamic = rcCommand[AUX5];
-    dynamic = constrainf(dynamic / (PWM_RANGE_MAX-PWM_RANGE_MIN), 0.0f, 1.0f);
-    DEBUG_SET(DEBUG_RPM_LIMIT, 3, lrintf(dynamic * 100.0f)); //текущее 5 AUX канала
+    //dynamic = constrainf(dynamic / (PWM_RANGE_MAX-PWM_RANGE_MIN), 0.0f, 1.0f);
+    dynamic = dynamic / 100.0f;
+    DEBUG_SET(DEBUG_RPM_LIMIT, 3, lrintf(dynamic * 1.0f)); //текущее 5 AUX канала
 }
 #endif // USE_RPM_LIMIT
 
