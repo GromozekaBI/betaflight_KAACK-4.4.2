@@ -377,6 +377,7 @@ static void applyRpmLimiter(mixerRuntime_t *mixer)
     DEBUG_SET(DEBUG_RPM_LIMIT, 1, lrintf(unsmoothedAverageRpm)); // c учетом фильтрации
     DEBUG_SET(DEBUG_RPM_LIMIT, 2, lrintf(mixer->rpmLimiterThrottleScale * 100.0f)); // текущий расчетный предел дросельной заслонки
     DEBUG_SET(DEBUG_RPM_LIMIT, 3, lrintf(throttle * 100.0f)); //текущее значение газа
+    DEBUG_SET(DEBUG_RPM_LIMIT, 4, lrintf(rcCommand[THROTTLE] * 1.0f)); //текущее значение газа
 }
 #endif // USE_RPM_LIMIT
 
