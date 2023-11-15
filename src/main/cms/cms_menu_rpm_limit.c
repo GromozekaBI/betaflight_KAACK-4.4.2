@@ -39,8 +39,10 @@
 
 uint16_t rpm_limit_value;
 uint16_t motor_kv;
+uint16_t min_dynamic_rpm_limit_value;
+uint16_t max_dynamic_rpm_limit_value;
 bool rpm_limit;
-//bool dynamic_rpm_limit;
+bool dynamic_rpm_limit;
 
 static const void *cmsx_RpmLimit_onEnter(displayPort_t *pDisp)
 {
