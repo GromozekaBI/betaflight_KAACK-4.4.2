@@ -347,7 +347,12 @@ void mixerInitProfile(void)
 #endif
 
 #ifdef USE_RPM_LIMIT
-    activateRpmLimit();
+    void mixerResetRpmLimiter(void)
+    {
+        const float maxExpectedRpm = MAX(1.0f, motorConfig()->kv * getBatteryVoltage() * 0.01f);
+        mixerRuntime.rpmLimiterThrottleScale = constrainf(mixerRuntime.rpmLimiterRpmLimit / maxExpectedRpm, 0.0f, 1.0f);
+    }
+
     void activateRpmLimit(void)
     {
         mixerRuntime.rpmLimiterRpmLimit = mixerConfig()->rpm_limit_value;
@@ -357,7 +362,7 @@ void mixerInitProfile(void)
         pt1FilterInit(&mixerRuntime.averageRpmFilter, pt1FilterGain(6.0f, pidGetDT()));
         mixerResetRpmLimiter();
     }
-    
+    activateRpmLimit();
     /*
     mixerRuntime.rpmLimiterRpmLimit = mixerConfig()->rpm_limit_value;
     mixerRuntime.rpmLimiterPGain = mixerConfig()->rpm_limit_p * 15e-6f ;
@@ -368,7 +373,7 @@ void mixerInitProfile(void)
     */
 #endif
 }
-
+/*
 #ifdef USE_RPM_LIMIT
 void mixerResetRpmLimiter(void)
 {
@@ -376,6 +381,7 @@ void mixerResetRpmLimiter(void)
     mixerRuntime.rpmLimiterThrottleScale = constrainf(mixerRuntime.rpmLimiterRpmLimit / maxExpectedRpm, 0.0f, 1.0f);
 }
 #endif // USE_RPM_LIMIT
+*/
 
 #ifdef USE_LAUNCH_CONTROL
 // Create a custom mixer for launch control based on the current settings
