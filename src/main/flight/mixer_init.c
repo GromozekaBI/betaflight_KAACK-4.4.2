@@ -63,9 +63,9 @@ void pgResetFn_mixerConfig(mixerConfig_t *mixerConfig)
     mixerConfig->rpm_limit_p = 25;
     mixerConfig->rpm_limit_i = 10;
     mixerConfig->rpm_limit_d = 8;
-    mixerConfig->rpm_limit_value = 18000;
-    mixerConfig->min_dynamic_rpm_limit_value = 18000; // min значение 
-    mixerConfig->max_dynamic_rpm_limit_value = 24000; // max значение
+    mixerConfig->rpm_limit_value = 10000;
+    mixerConfig->min_dynamic_rpm_limit_value = 9500; // min значение 
+    mixerConfig->max_dynamic_rpm_limit_value = 10500; // max значение
 #endif
 }
 
