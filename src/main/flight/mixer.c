@@ -393,6 +393,7 @@ static void applyRpmLimiter(mixerRuntime_t *mixer)
         activateRpmLimit();
     }
     
+
     //mixerConfig->rpm_limit_value = mixerConfig()->max_dynamic_rpm_limit_value;
     //mixerConfig->rpm_limit_value = mixerConfig()->min_dynamic_rpm_limit_value;
 

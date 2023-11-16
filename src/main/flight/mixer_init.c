@@ -37,7 +37,7 @@
 #include "fc/controlrate_profile.h"
 #include "fc/runtime_config.h"
 
-#include "flight/mixer_tricopter.h"
+#include "flight/mixer_tricopter.ah"
 #include "flight/pid.h"
 
 #include "mixer.h"
