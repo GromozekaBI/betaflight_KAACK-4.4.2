@@ -381,27 +381,21 @@ static void applyRpmLimiter(mixerRuntime_t *mixer)
     dynamicActivate = constrainf(dynamicActivate / (PWM_RANGE_MAX - PWM_RANGE_MIN), 0.0f, 1.0f);
     dynamicActivate = dynamicActivate * 100.0f; // формат значений 0..100
 
-    float dynamicActivateNow = dynamicActivateNow * 1.0f;
-    if (dynamicActivateNow != dynamicActivate){
-        if (dynamicActivate > 66.0f){
-            mixerConfigMutable()->dynamic_rpm_limit = mixerConfig()->max_dynamic_rpm_limit_value;
-            dynamicActivateNow = dynamicActivate;
-            //activateRpmLimit();
-            mixer->rpmLimiterRpmLimit = mixerConfig()->max_dynamic_rpm_limit_value;  
+    float dynamicNow = dynamicNow * 1.0f;
+
+    if(!mixerConfig()->dynamic_rpm_limit){ // Включение отключение dynamic_rpm_limit
+        if (mixer->rpmLimiterRpmLimit != mixerConfig()->rpm_limit_value){ // если значение отличается от статического
+            mixer->rpmLimiterRpmLimit = mixerConfig()->rpm_limit_value; // присваиваем значение
         }
-        if ((dynamicActivate > 33.0f) && (dynamicActivate <= 66.0f)){
-            mixerConfigMutable()->dynamic_rpm_limit = mixerConfig()->min_dynamic_rpm_limit_value;
-            dynamicActivateNow = dynamicActivate;
-            //activateRpmLimit();
-            mixer->rpmLimiterRpmLimit = mixerConfig()->rpm_limit_value;
-        }
-        if (dynamicActivate <= 33.0f){
-            mixerConfigMutable()->dynamic_rpm_limit = mixerConfig()->min_dynamic_rpm_limit_value;
-            dynamicActivateNow = dynamicActivate;
-            //activateRpmLimit();
-            mixer->rpmLimiterRpmLimit = mixerConfig()->min_dynamic_rpm_limit_value;
-        }
-        
+    }else{
+        if  (dynamicActivate > 50.0f){  // Если на 6 канал приходит занчение более 50, то меняем значение на динамическое
+            if (dynamicNow != dynamic){ // Если значение на AUX изменилось
+                 float scale_dynamic_rpm_limit = scaleRangef(dynamic, 0.0f, 100.0f, mixerConfig()->min_dynamic_rpm_limit_value, mixerConfig()->max_dynamic_rpm_limit_value); //пересчитываем значение оборотов 
+                 mixerConfigMutable()->dynamic_rpm_limit = scale_dynamic_rpm_limit; // Записываем во внутреннюю память
+                 mixer->rpmLimiterRpmLimit = mixerConfig()->scale_dynamic_rpm_limit; // Передаем значение на PID регулятор
+                 dynamicNow = dynamic; // записываем значение с AUX, чтобы несколько раз не перезаписывать значение 
+            }
+        }    
     }   
 
     //mixerConfig->rpm_limit_value = mixerConfig()->max_dynamic_rpm_limit_value;
