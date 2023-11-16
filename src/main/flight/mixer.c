@@ -383,12 +383,12 @@ static void applyRpmLimiter(mixerRuntime_t *mixer)
 
     float dynamicActivateNow;
     if ((dynamicActivateNow != dynamicActivate) && (dynamicActivate == 100.0f)){
-        mixerConfig->rpm_limit_value = mixerConfig()->max_dynamic_rpm_limit_value;
+        mixerConfigMutable()->dynamic_rpm_limit = mixerConfig()->max_dynamic_rpm_limit_value;
         dynamicActivateNow = dynamicActivate;
         activateRpmLimit();
     }
     if ((dynamicActivateNow != dynamicActivate) && (dynamicActivate == 0.0f)){
-        mixerConfig->rpm_limit_value = mixerConfig()->min_dynamic_rpm_limit_value;
+        mixerConfigMutable()->dynamic_rpm_limit = mixerConfig()->min_dynamic_rpm_limit_value;
         dynamicActivateNow = dynamicActivate;
         activateRpmLimit();
     }
