@@ -392,7 +392,7 @@ static void applyRpmLimiter(mixerRuntime_t *mixer)
             if (dynamicNow != dynamic){ // Если значение на AUX изменилось
                  float scale_dynamic_rpm_limit = scaleRangef(dynamic, 0.0f, 100.0f, mixerConfig()->min_dynamic_rpm_limit_value, mixerConfig()->max_dynamic_rpm_limit_value); //пересчитываем значение оборотов 
                  mixerConfigMutable()->dynamic_rpm_limit = scale_dynamic_rpm_limit; // Записываем во внутреннюю память
-                 mixer->rpmLimiterRpmLimit = mixerConfig()->scale_dynamic_rpm_limit; // Передаем значение на PID регулятор
+                 mixer->rpmLimiterRpmLimit = scale_dynamic_rpm_limit; // Передаем значение на PID регулятор
                  dynamicNow = dynamic; // записываем значение с AUX, чтобы несколько раз не перезаписывать значение 
             }
         }    
