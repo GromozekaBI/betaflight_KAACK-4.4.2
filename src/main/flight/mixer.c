@@ -381,6 +381,22 @@ static void applyRpmLimiter(mixerRuntime_t *mixer)
     dynamicActivate = constrainf(dynamicActivate / (PWM_RANGE_MAX - PWM_RANGE_MIN), 0.0f, 1.0f);
     dynamicActivate = dynamicActivate * 100.0f; // формат значений 0..100
 
+    float dynamicActivateNow;
+    if ((dynamicActivateNow <> dynamicActivate) && (dynamicActivate == 100.0f)){
+        mixerConfig->rpm_limit_value = mixerConfig()->max_dynamic_rpm_limit_value;
+        dynamicActivateNow = dynamicActivate;
+        activateRpmLimit();
+    }
+    if ((dynamicActivateNow <> dynamicActivate) && (dynamicActivate == 0.0f)){
+        mixerConfig->rpm_limit_value = mixerConfig()->min_dynamic_rpm_limit_value;
+        dynamicActivateNow = dynamicActivate;
+        activateRpmLimit();
+    }
+    
+
+    //mixerConfig->rpm_limit_value = mixerConfig()->max_dynamic_rpm_limit_value;
+    //mixerConfig->rpm_limit_value = mixerConfig()->min_dynamic_rpm_limit_value;
+
     DEBUG_SET(DEBUG_RPM_LIMIT, 0, lrintf(averageRpm)); // средние обороты на 4х двигателях
     DEBUG_SET(DEBUG_RPM_LIMIT, 1, lrintf(unsmoothedAverageRpm)); // c учетом фильтрации
     //DEBUG_SET(DEBUG_RPM_LIMIT, 2, lrintf(mixer->rpmLimiterThrottleScale * 100.0f)); // текущий расчетный предел дросельной заслонки
