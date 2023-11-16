@@ -381,7 +381,7 @@ static void applyRpmLimiter(mixerRuntime_t *mixer)
     dynamicActivate = constrainf(dynamicActivate / (PWM_RANGE_MAX - PWM_RANGE_MIN), 0.0f, 1.0f);
     dynamicActivate = dynamicActivate * 100.0f; // формат значений 0..100
 
-    float dynamicActivateNow;
+    float dynamicActivateNow = dynamicActivateNow * 1.0f;
     if ((dynamicActivateNow != dynamicActivate) && (dynamicActivate == 100.0f)){
         mixerConfigMutable()->dynamic_rpm_limit = mixerConfig()->max_dynamic_rpm_limit_value;
         dynamicActivateNow = dynamicActivate;
