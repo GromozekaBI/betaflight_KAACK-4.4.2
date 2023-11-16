@@ -382,30 +382,33 @@ static void applyRpmLimiter(mixerRuntime_t *mixer)
     dynamicActivate = dynamicActivate * 100.0f; // формат значений 0..100
 
     float dynamicActivateNow = dynamicActivateNow * 1.0f;
-    if ((dynamicActivateNow != dynamicActivate) && (dynamicActivate == 100.0f)){
-        mixerConfigMutable()->dynamic_rpm_limit = mixerConfig()->max_dynamic_rpm_limit_value;
-        dynamicActivateNow = dynamicActivate;
-        //activateRpmLimit();
-        mixer->rpmLimiterRpmLimit = mixerConfig()->max_dynamic_rpm_limit_value;
+    if (dynamicActivateNow != dynamicActivate){
+        if (dynamicActivate > 50.0f){
+            mixerConfigMutable()->dynamic_rpm_limit = mixerConfig()->max_dynamic_rpm_limit_value;
+            dynamicActivateNow = dynamicActivate;
+            //activateRpmLimit();
+            mixer->rpmLimiterRpmLimit = mixerConfig()->max_dynamic_rpm_limit_value;  
+        }else{
+            mixerConfigMutable()->dynamic_rpm_limit = mixerConfig()->min_dynamic_rpm_limit_value;
+            dynamicActivateNow = dynamicActivate;
+            //activateRpmLimit();
+            mixer->rpmLimiterRpmLimit = mixerConfig()->min_dynamic_rpm_limit_value;
+        }
+        
     }
-    if ((dynamicActivateNow != dynamicActivate) && (dynamicActivate == 0.0f)){
-        mixerConfigMutable()->dynamic_rpm_limit = mixerConfig()->min_dynamic_rpm_limit_value;
-        dynamicActivateNow = dynamicActivate;
-        //activateRpmLimit();
-        mixer->rpmLimiterRpmLimit = mixerConfig()->min_dynamic_rpm_limit_value;
     }
+    
     
 
     //mixerConfig->rpm_limit_value = mixerConfig()->max_dynamic_rpm_limit_value;
     //mixerConfig->rpm_limit_value = mixerConfig()->min_dynamic_rpm_limit_value;
 
-    DEBUG_SET(DEBUG_RPM_LIMIT, 0, lrintf(averageRpm)); // средние обороты на 4х двигателях
-    DEBUG_SET(DEBUG_RPM_LIMIT, 1, lrintf(unsmoothedAverageRpm)); // c учетом фильтрации
-    //DEBUG_SET(DEBUG_RPM_LIMIT, 2, lrintf(mixer->rpmLimiterThrottleScale * 100.0f)); // текущий расчетный предел дросельной заслонки
+    //DEBUG_SET(DEBUG_RPM_LIMIT, 0, lrintf(averageRpm)); // средние обороты на 4х двигателях
+    DEBUG_SET(DEBUG_RPM_LIMIT, 0, lrintf(unsmoothedAverageRpm)); // c учетом фильтрации
+    DEBUG_SET(DEBUG_RPM_LIMIT, 1, lrintf(mixer->rpmLimiterThrottleScale * 100.0f)); // текущий расчетный предел дросельной заслонки
     //DEBUG_SET(DEBUG_RPM_LIMIT, 3, lrintf(throttle * 100.0f)); //текущее значение газа
-    //float dynamic = rcCommand[YAW] + 500.0f; // если надо оси PITCH ROLL YAW
-    DEBUG_SET(DEBUG_RPM_LIMIT, 2, lrintf(dynamic * 1.0f)); //текущее 5 AUX канала
-    DEBUG_SET(DEBUG_RPM_LIMIT, 3, lrintf(dynamicActivate * 1.0f)); //текущее 6 AUX канала
+    //DEBUG_SET(DEBUG_RPM_LIMIT, 2, lrintf(dynamic * 1.0f)); //текущее 5 AUX канала
+    DEBUG_SET(DEBUG_RPM_LIMIT, 2, lrintf(dynamicActivate * 1.0f)); //текущее 6 AUX канала
 }
 #endif // USE_RPM_LIMIT
 
