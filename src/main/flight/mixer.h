@@ -32,8 +32,7 @@
 #include "drivers/io_types.h"
 #include "drivers/pwm_output.h"
 
-
-#include "mixer_init.h2"
+#include "mixer_init.h"
 
 #define QUAD_MOTOR_COUNT 4
 
