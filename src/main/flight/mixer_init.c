@@ -347,7 +347,8 @@ void mixerInitProfile(void)
 #endif
 
 #ifdef USE_RPM_LIMIT
-    void activateRpmLimit(void){
+    void activateRpmLimit(void)
+    {
         mixerRuntime.rpmLimiterRpmLimit = mixerConfig()->rpm_limit_value;
         mixerRuntime.rpmLimiterPGain = mixerConfig()->rpm_limit_p * 15e-6f ;
         mixerRuntime.rpmLimiterIGain = mixerConfig()->rpm_limit_i * 1e-3f * pidGetDT();
