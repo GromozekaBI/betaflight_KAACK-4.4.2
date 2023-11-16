@@ -316,8 +316,7 @@ void initEscEndpoints(void)
 
 // Initialize pidProfile related mixer settings
 
-
-#ifdef USE_RPM_LIMIT
+//#ifdef USE_RPM_LIMIT
 void activateRpmLimit(void)
 {
     mixerRuntime.rpmLimiterRpmLimit = mixerConfig()->rpm_limit_value;
@@ -334,6 +333,9 @@ void mixerResetRpmLimiter(void)
     mixerRuntime.rpmLimiterThrottleScale = constrainf(mixerRuntime.rpmLimiterRpmLimit / maxExpectedRpm, 0.0f, 1.0f);
 }
 
+
+#ifdef USE_RPM_LIMIT
+    void activateRpmLimit();
 #endif // USE_RPM_LIMIT
 
 void mixerInitProfile(void)
