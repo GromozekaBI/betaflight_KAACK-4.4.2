@@ -389,7 +389,7 @@ static void applyRpmLimiter(mixerRuntime_t *mixer)
     dynamicActivate = constrainf(dynamicActivate / (PWM_RANGE_MAX - PWM_RANGE_MIN), 0.0f, 1.0f);
     dynamicActivate = dynamicActivate * 100.0f; // формат значений 0..100
 
-    float dynamicNow = dynamicNow * 1.0f;
+    float scale_dynamic_rpm_limit_Now = scale_dynamic_rpm_limit_Now * 1.0f;
     float scale_dynamic_rpm_limit = scaleRangef(dynamic, 0.0f, 1000.0f, mixerConfig()->min_dynamic_rpm_limit_value, mixerConfig()->max_dynamic_rpm_limit_value); //пересчитываем значение оборотов
 
     if(!mixerConfig()->dynamic_rpm_limit){ // Включение отключение dynamic_rpm_limit
@@ -398,12 +398,12 @@ static void applyRpmLimiter(mixerRuntime_t *mixer)
         }
     }else{
         if  (dynamicActivate > 50.0f){  // Если на 6 канал приходит занчение более 50, то меняем значение на динамическое
-            if (dynamicNow != dynamic){ // Если значение на AUX изменилось
+            if (scale_dynamic_rpm_limit_Now != scale_dynamic_rpm_limit){ // Если значение на AUX изменилось
                  //float scale_dynamic_rpm_limit = scaleRangef(dynamic, 0.0f, 1000.0f, mixerConfig()->min_dynamic_rpm_limit_value, mixerConfig()->max_dynamic_rpm_limit_value); //пересчитываем значение оборотов 
                  //float scale_dynamic_rpm_limit = mixerConfig()->min_dynamic_rpm_limit_value + dynamic / 1000 * (mixerConfig()->max_dynamic_rpm_limit_value() - mixerConfig()->min_dynamic_rpm_limit_value);
                  mixerConfigMutable()->dynamic_rpm_limit = scale_dynamic_rpm_limit; // Записываем во внутреннюю память
                  mixer->rpmLimiterRpmLimit = scale_dynamic_rpm_limit; // Передаем значение на PID регулятор
-                 dynamicNow = dynamic; // записываем значение с AUX, чтобы несколько раз не перезаписывать значение 
+                 scale_dynamic_rpm_limit_Now = scale_dynamic_rpm_limit; // записываем значение с AUX, чтобы несколько раз не перезаписывать значение 
             }
         }else{ // если отключили динамическое значение присваиваем статическое
             if (mixer->rpmLimiterRpmLimit != mixerConfig()->rpm_limit_value){ // если значение отличается от статического
