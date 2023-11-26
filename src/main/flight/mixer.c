@@ -377,6 +377,14 @@ static void applyRpmLimiter(mixerRuntime_t *mixer)
     dynamic = constrainf(dynamic / (PWM_RANGE_MAX - PWM_RANGE_MIN), 0.0f, 1.0f);
     dynamic = dynamic * 1000.0f; // формат значений 0..1000
 
+    // Используем 6 позиционный переключатель и ELRS протокол
+    if ((dynamic >= 0 ) && (dynamic < 200 )) dynamic = 0.0f;
+    if ((dynamic >= 200 ) && (dynamic < 450 )) dynamic = 200.0f;
+    if ((dynamic >= 450 ) && (dynamic < 550 )) dynamic = 400.0f;
+    if ((dynamic >= 550 ) && (dynamic < 650 )) dynamic = 600.0f;
+    if ((dynamic >= 650 ) && (dynamic < 900 )) dynamic = 800.0f;
+    if ((dynamic >= 900 ) && (dynamic <= 1000 )) dynamic = 1000.0f;
+
     float dynamicActivate = rcData[AUX6] - 1000.0f; // считываем значение с 6 канала
     dynamicActivate = constrainf(dynamicActivate / (PWM_RANGE_MAX - PWM_RANGE_MIN), 0.0f, 1.0f);
     dynamicActivate = dynamicActivate * 100.0f; // формат значений 0..100
