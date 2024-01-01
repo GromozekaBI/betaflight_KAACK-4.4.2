@@ -944,9 +944,9 @@ const clivalue_t valueTable[] = {
     { "rpm_limit_p",                VAR_UINT16 |  MASTER_VALUE,  .config.minmaxUnsigned = { 0, 100 },        PG_MIXER_CONFIG, offsetof(mixerConfig_t, rpm_limit_p) },
     { "rpm_limit_i",                VAR_UINT16 |  MASTER_VALUE,  .config.minmaxUnsigned = { 0, 1000 },       PG_MIXER_CONFIG, offsetof(mixerConfig_t, rpm_limit_i) },
     { "rpm_limit_d",                VAR_UINT16 |  MASTER_VALUE,  .config.minmaxUnsigned = { 0, 100 },        PG_MIXER_CONFIG, offsetof(mixerConfig_t, rpm_limit_d) },
-    { "rpm_limit_value",            VAR_UINT16 |  MASTER_VALUE,  .config.minmaxUnsigned = { 1, UINT32_MAX }, PG_MIXER_CONFIG, offsetof(mixerConfig_t, rpm_limit_value) },
-    { "min_dynamic_rpm_limit_value",VAR_UINT16 |  MASTER_VALUE,  .config.minmaxUnsigned = { 1, UINT32_MAX }, PG_MIXER_CONFIG, offsetof(mixerConfig_t, min_dynamic_rpm_limit_value) },
-    { "max_dynamic_rpm_limit_value",VAR_UINT16 |  MASTER_VALUE,  .config.minmaxUnsigned = { 1, UINT32_MAX }, PG_MIXER_CONFIG, offsetof(mixerConfig_t, max_dynamic_rpm_limit_value) },
+    { "rpm_limit_value",            VAR_UINT32 |  MASTER_VALUE,  .config.minmaxUnsigned = { 1, UINT32_MAX }, PG_MIXER_CONFIG, offsetof(mixerConfig_t, rpm_limit_value) },
+    { "min_dynamic_rpm_limit_value",VAR_UINT32 |  MASTER_VALUE,  .config.minmaxUnsigned = { 1, UINT32_MAX }, PG_MIXER_CONFIG, offsetof(mixerConfig_t, min_dynamic_rpm_limit_value) },
+    { "max_dynamic_rpm_limit_value",VAR_UINT32 |  MASTER_VALUE,  .config.minmaxUnsigned = { 1, UINT32_MAX }, PG_MIXER_CONFIG, offsetof(mixerConfig_t, max_dynamic_rpm_limit_value) },
 #endif
 
 // PG_MOTOR_3D_CONFIG
