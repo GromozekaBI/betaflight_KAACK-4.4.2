@@ -379,8 +379,8 @@ static void applyRpmLimiter(mixerRuntime_t *mixer)
 
     // Используем 6 позиционный переключатель и ELRS протокол
     if ((dynamic >= 0 ) && (dynamic < 200 )) dynamic = 0.0f;
-    if ((dynamic >= 200 ) && (dynamic < 450 )) dynamic = 200.0f;
-    if ((dynamic >= 450 ) && (dynamic < 550 )) dynamic = 400.0f;
+    if ((dynamic >= 200 ) && (dynamic < 400 )) dynamic = 200.0f;
+    if ((dynamic >= 400 ) && (dynamic < 550 )) dynamic = 400.0f;
     if ((dynamic >= 550 ) && (dynamic < 650 )) dynamic = 600.0f;
     if ((dynamic >= 650 ) && (dynamic < 900 )) dynamic = 800.0f;
     if ((dynamic >= 900 ) && (dynamic <= 1000 )) dynamic = 1000.0f;
