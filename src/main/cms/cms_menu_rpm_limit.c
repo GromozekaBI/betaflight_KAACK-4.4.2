@@ -78,9 +78,9 @@ static const OSD_Entry cmsx_menuRpmLimitEntries[] =
     {"-- RPM LIMIT --", OME_Label, NULL, NULL},
     { "ACTIVE",   OME_Bool | REBOOT_REQUIRED,  NULL, &rpm_limit },
     { "DYNAMIC",   OME_Bool | REBOOT_REQUIRED,  NULL, &dynamic_rpm_limit }, // Включение DYNAMIC RPM
-    {"CONST RPM", OME_UINT16, NULL, &(OSD_UINT16_t){ &rpm_limit_value, 0, UINT32_MAX, 100}},
-    {"MIN RPM", OME_UINT16, NULL, &(OSD_UINT16_t){ &min_dynamic_rpm_limit_value, 0, UINT32_MAX, 100}}, // тут можно задать MAX значение
-    {"MAX RPM", OME_UINT16, NULL, &(OSD_UINT16_t){ &max_dynamic_rpm_limit_value, 0, UINT32_MAX, 100}}, // тут можно задать MIN значение
+    {"CONST RPM", OME_UINT32, NULL, &(OSD_UINT32_t){ &rpm_limit_value, 0, UINT32_MAX, 100}},
+    {"MIN RPM", OME_UINT32, NULL, &(OSD_UINT32_t){ &min_dynamic_rpm_limit_value, 0, UINT32_MAX, 100}}, // тут можно задать MAX значение
+    {"MAX RPM", OME_UINT32, NULL, &(OSD_UINT32_t){ &max_dynamic_rpm_limit_value, 0, UINT32_MAX, 100}}, // тут можно задать MIN значение
     {"KV", OME_UINT16, NULL, &(OSD_UINT16_t){ &motor_kv, 0, UINT16_MAX, 1}},
 
     { "SAVE&REBOOT",     OME_OSD_Exit, cmsMenuExit,   (void *)CMS_POPUP_SAVEREBOOT},
