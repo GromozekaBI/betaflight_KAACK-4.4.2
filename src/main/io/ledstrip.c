@@ -487,6 +487,37 @@ static void applyLedFixedLayers(void)
             if (ledGetOverlayBit(ledConfig, LED_OVERLAY_THROTTLE)) {   //smooth fade with selected Aux channel of all HSV values from previousColor through color to nextColor
                 const int auxInput = rcData[ledStripStatusModeConfig()->ledstrip_aux_channel];
                 int centerPWM = (PWM_RANGE_MIN + PWM_RANGE_MAX) / 2;
+                if ((auxInput >= 1000 ) && (auxInput < 1200 )){
+                    color.h = HSV(RED).h;
+                    color.s = HSV(RED).s;
+                    color.v = HSV(RED).v;
+                }
+                if ((auxInput >= 1200 ) && (auxInput < 1400 )){
+                    color.h = HSV(YELLOW).h;
+                    color.s = HSV(YELLOW).s;
+                    color.v = HSV(YELLOW).v;
+                }
+                if ((auxInput >= 1400 ) && (auxInput < 1550 )){
+                    color.h = HSV(BLUE).h;
+                    color.s = HSV(BLUE).s;
+                    color.v = HSV(BLUE).v;
+                }
+                if ((auxInput >= 1550 ) && (auxInput < 1650 )){
+                    color.h = HSV(GREEN).h;
+                    color.s = HSV(GREEN).s;
+                    color.v = HSV(GREEN).v;
+                }
+                if ((auxInput >= 1650 ) && (auxInput < 1900 )){
+                    color.h = HSV(WHITE).h;
+                    color.s = HSV(WHITE).s;
+                    color.v = HSV(WHITE).v;
+                }
+                if ((auxInput >= 1900 ) && (auxInput <= 2000 )){
+                    color.h = HSV(BLACK).h;
+                    color.s = HSV(BLACK).s;
+                    color.v = HSV(BLACK).v;
+                }
+                /*
                 if (auxInput < PWM_RANGE_MIN){
                     color.h = HSV(WHITE).h;
                     color.s = HSV(WHITE).s;
@@ -507,6 +538,7 @@ static void applyLedFixedLayers(void)
                     color.s = HSV(BLACK).s;
                     color.v = HSV(BLACK).v;
                 }
+                */
             }
 
             break;
