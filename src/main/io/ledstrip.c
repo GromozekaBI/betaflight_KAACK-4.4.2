@@ -503,9 +503,9 @@ static void applyLedFixedLayers(void)
                     color.v = scaleRange(auxInput, centerPWM, PWM_RANGE_MAX, color.v, nextColor.v);
                 }
                 if (auxInput >= PWM_RANGE_MAX){
-                    color.h = HSV(DARK).h;
-                    color.s = HSV(DARK).h;
-                    color.v = HSV(DARK).h;
+                    color.h = HSV(BLACK).h;
+                    color.s = HSV(BLACK).h;
+                    color.v = HSV(BLACK).h;
                 }
             }
 
