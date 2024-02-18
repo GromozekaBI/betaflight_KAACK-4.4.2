@@ -486,7 +486,7 @@ static void applyLedFixedLayers(void)
 
             if (ledGetOverlayBit(ledConfig, LED_OVERLAY_THROTTLE)) {   //smooth fade with selected Aux channel of all HSV values from previousColor through color to nextColor
                 const int auxInput = rcData[ledStripStatusModeConfig()->ledstrip_aux_channel];
-                int centerPWM = (PWM_RANGE_MIN + PWM_RANGE_MAX) / 2;
+                //int centerPWM = (PWM_RANGE_MIN + PWM_RANGE_MAX) / 2;
                 if ((auxInput >= 1000 ) && (auxInput < 1200 )){
                     color.h = HSV(RED).h;
                     color.s = HSV(RED).s;
