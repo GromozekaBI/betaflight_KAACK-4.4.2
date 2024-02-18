@@ -487,14 +487,25 @@ static void applyLedFixedLayers(void)
             if (ledGetOverlayBit(ledConfig, LED_OVERLAY_THROTTLE)) {   //smooth fade with selected Aux channel of all HSV values from previousColor through color to nextColor
                 const int auxInput = rcData[ledStripStatusModeConfig()->ledstrip_aux_channel];
                 int centerPWM = (PWM_RANGE_MIN + PWM_RANGE_MAX) / 2;
-                if (auxInput < centerPWM) {
+                if (auxInput < PWM_RANGE_MIN){
+                    color.h = HSV(WHITE).h;
+                    color.s = HSV(WHITE).h;
+                    color.v = HSV(WHITE).h;
+                }
+                if ((auxInput >= PWM_RANGE_MIN) && (auxInput < centerPWM)) {
                     color.h = scaleRange(auxInput, PWM_RANGE_MIN, centerPWM, previousColor.h, color.h);
                     color.s = scaleRange(auxInput, PWM_RANGE_MIN, centerPWM, previousColor.s, color.s);
                     color.v = scaleRange(auxInput, PWM_RANGE_MIN, centerPWM, previousColor.v, color.v);
-                } else {
+                } 
+                if ((auxInput >= centerPWM) && (auxInput < PWM_RANGE_MAX)) {
                     color.h = scaleRange(auxInput, centerPWM, PWM_RANGE_MAX, color.h, nextColor.h);
                     color.s = scaleRange(auxInput, centerPWM, PWM_RANGE_MAX, color.s, nextColor.s);
                     color.v = scaleRange(auxInput, centerPWM, PWM_RANGE_MAX, color.v, nextColor.v);
+                }
+                if (auxInput >= PWM_RANGE_MAX){
+                    color.h = HSV(DARK).h;
+                    color.s = HSV(DARK).h;
+                    color.v = HSV(DARK).h;
                 }
             }
 
