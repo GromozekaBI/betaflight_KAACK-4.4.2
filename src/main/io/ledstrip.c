@@ -489,8 +489,8 @@ static void applyLedFixedLayers(void)
                 int centerPWM = (PWM_RANGE_MIN + PWM_RANGE_MAX) / 2;
                 if (auxInput < PWM_RANGE_MIN){
                     color.h = HSV(WHITE).h;
-                    color.s = HSV(WHITE).h;
-                    color.v = HSV(WHITE).h;
+                    color.s = HSV(WHITE).s;
+                    color.v = HSV(WHITE).v;
                 }
                 if ((auxInput >= PWM_RANGE_MIN) && (auxInput < centerPWM)) {
                     color.h = scaleRange(auxInput, PWM_RANGE_MIN, centerPWM, previousColor.h, color.h);
@@ -504,8 +504,8 @@ static void applyLedFixedLayers(void)
                 }
                 if (auxInput >= PWM_RANGE_MAX){
                     color.h = HSV(BLACK).h;
-                    color.s = HSV(BLACK).h;
-                    color.v = HSV(BLACK).h;
+                    color.s = HSV(BLACK).s;
+                    color.v = HSV(BLACK).v;
                 }
             }
 
