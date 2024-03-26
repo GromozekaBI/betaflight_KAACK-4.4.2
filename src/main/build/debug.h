@@ -20,7 +20,7 @@
 
 #pragma once
 
-#define DEBUG16_VALUE_COUNT 4
+#define DEBUG16_VALUE_COUNT 6
 extern uint32_t debug[DEBUG16_VALUE_COUNT];
 extern uint8_t debugMode;
 
