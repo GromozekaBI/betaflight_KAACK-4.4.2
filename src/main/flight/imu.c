@@ -586,8 +586,8 @@ void imuUpdateAttitude(timeUs_t currentTimeUs)
     DEBUG_SET(DEBUG_BIG_BLACK, 0, lrintf(acc.accADC[X])); // Нам надо в BIG_BLACK значение с акселерометра
     DEBUG_SET(DEBUG_BIG_BLACK, 1, lrintf(acc.accADC[Y])); // Нам надо в BIG_BLACK значение с акселерометра
     DEBUG_SET(DEBUG_BIG_BLACK, 2, lrintf(acc.accADC[Z])); // Нам надо в BIG_BLACK значение с акселерометра
-    #DEBUG_SET(DEBUG_BIG_BLACK, 3, lrintf(rollAndPitchTrims.roll));
-    #DEBUG_SET(DEBUG_BIG_BLACK, 4, lrintf(rollAndPitchTrims.pitch));
+    //DEBUG_SET(DEBUG_BIG_BLACK, 3, lrintf(rollAndPitchTrims.roll));
+    //DEBUG_SET(DEBUG_BIG_BLACK, 4, lrintf(rollAndPitchTrims.pitch));
 }
 #endif // USE_ACC
 
