@@ -433,6 +433,8 @@ static void applyRpmLimiter(mixerRuntime_t *mixer)
 
     DEBUG_SET(DEBUG_BIG_BLACK, 0, lrintf(attitude.raw[FD_ROLL]));
     DEBUG_SET(DEBUG_BIG_BLACK, 1, lrintf(attitude.raw[FD_PITCH])); 
+    DEBUG_SET(DEBUG_BIG_BLACK, 2, lrintf(attitude.raw[FD_ROLL] - accelerometerConfig()->accelerometerTrims.raw[FD_ROLL]));
+    DEBUG_SET(DEBUG_BIG_BLACK, 3, lrintf(attitude.raw[FD_PITCH] - accelerometerConfig()->accelerometerTrims.raw[FD_PITCH]));
 }
 #endif // USE_RPM_LIMIT
 
