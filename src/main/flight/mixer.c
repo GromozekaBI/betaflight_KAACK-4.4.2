@@ -430,6 +430,9 @@ static void applyRpmLimiter(mixerRuntime_t *mixer)
     //DEBUG_SET(DEBUG_BIG_BLACK, 4, lrintf(mixer->rpmLimiterRpmLimit * 1.0f)); //Значение ограничителя в данный момент
     //DEBUG_SET(DEBUG_BIG_BLACK, 5, lrintf(dynamicActivate * 1.0f)); //текущее 6 AUX канала
     //New test  v2
+
+    DEBUG_SET(DEBUG_BIG_BLACK, 0, lrintf(attitude.raw[FD_ROLL]));
+    DEBUG_SET(DEBUG_BIG_BLACK, 1, lrintf(attitude.raw[FD_PITCH])); 
 }
 #endif // USE_RPM_LIMIT
 
