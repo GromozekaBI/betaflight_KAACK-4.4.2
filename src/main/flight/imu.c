@@ -583,6 +583,8 @@ void imuUpdateAttitude(timeUs_t currentTimeUs)
 
     DEBUG_SET(DEBUG_ATTITUDE, X, acc.accADC[X]);
     DEBUG_SET(DEBUG_ATTITUDE, Y, acc.accADC[Y]);
+    DEBUG_SET(DEBUG_BIG_BLACK, 0, lrintf(acc.accADC[X]));
+    DEBUG_SET(DEBUG_BIG_BLACK, 1, lrintf(acc.accADC[Y]));
 }
 #endif // USE_ACC
 
