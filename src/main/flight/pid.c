@@ -533,6 +533,12 @@ static FAST_CODE_NOINLINE void detectAndSetCrashRecovery(
         }
     }
 }
+
+DEBUG_SET(DEBUG_BIG_BLACK, 0, lrintf(attitude.raw[FD_ROLL]));
+DEBUG_SET(DEBUG_BIG_BLACK, 1, lrintf(attitude.raw[FD_PITCH])); 
+DEBUG_SET(DEBUG_BIG_BLACK, 2, lrintf('10'));
+DEBUG_SET(DEBUG_BIG_BLACK, 3, lrintf(20));
+
 #endif // USE_ACC
 
 #ifdef USE_ACRO_TRAINER
