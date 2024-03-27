@@ -583,11 +583,10 @@ void imuUpdateAttitude(timeUs_t currentTimeUs)
 
     DEBUG_SET(DEBUG_ATTITUDE, X, acc.accADC[X]);
     DEBUG_SET(DEBUG_ATTITUDE, Y, acc.accADC[Y]);
-    #DEBUG_SET(DEBUG_BIG_BLACK, 0, lrintf(acc.accADC[X])); // Нам надо в BIG_BLACK
-    DEBUG_SET(DEBUG_BIG_BLACK, 0, lrintf(acc.accADC[Y])); // Нам надо в BIG_BLACK
-    DEBUG_SET(DEBUG_BIG_BLACK, 1, lrintf(acc.roll));
-    DEBUG_SET(DEBUG_BIG_BLACK, 2, lrintf(acc.pitch));
-    DEBUG_SET(DEBUG_BIG_BLACK, 3, lrintf(acc.yaw));
+    DEBUG_SET(DEBUG_BIG_BLACK, 0, lrintf(acc.accADC[X])); // Нам надо в BIG_BLACK
+    DEBUG_SET(DEBUG_BIG_BLACK, 1, lrintf(acc.accADC[Y])); // Нам надо в BIG_BLACK
+    DEBUG_SET(DEBUG_BIG_BLACK, 2, lrintf(rollAndPitchTrims_s.roll));
+    DEBUG_SET(DEBUG_BIG_BLACK, 3, lrintf(rollAndPitchTrims_s.pitch));
 }
 #endif // USE_ACC
 
