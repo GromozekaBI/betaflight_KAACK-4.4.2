@@ -431,10 +431,10 @@ static void applyRpmLimiter(mixerRuntime_t *mixer)
     //DEBUG_SET(DEBUG_BIG_BLACK, 5, lrintf(dynamicActivate * 1.0f)); //текущее 6 AUX канала
     //New test  v2
 
+    //DEBUG_SET(DEBUG_BIG_BLACK, 0, lrintf(attitude.raw[FD_ROLL]));
+    //DEBUG_SET(DEBUG_BIG_BLACK, 1, lrintf(attitude.raw[FD_PITCH])); 
     DEBUG_SET(DEBUG_BIG_BLACK, 0, lrintf(attitude.raw[FD_ROLL]));
-    DEBUG_SET(DEBUG_BIG_BLACK, 1, lrintf(attitude.raw[FD_PITCH])); 
-    DEBUG_SET(DEBUG_BIG_BLACK, 2, lrintf(attitude.raw[FD_ROLL]));
-    DEBUG_SET(DEBUG_BIG_BLACK, 3, lrintf(attitude.raw[FD_PITCH]));
+    DEBUG_SET(DEBUG_BIG_BLACK, 1, lrintf(attitude.raw[FD_PITCH])); // attitude.raw[FD_PITCH] - angleTrim->raw[FD_PITCH]
 }
 #endif // USE_RPM_LIMIT
 

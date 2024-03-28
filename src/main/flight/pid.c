@@ -375,6 +375,9 @@ static float getLevelModeRcDeflection(uint8_t axis)
     }
 }
 
+//DEBUG_SET(DEBUG_BIG_BLACK, 0, lrintf(attitude.raw[FD_ROLL]));
+//DEBUG_SET(DEBUG_BIG_BLACK, 1, lrintf(attitude.raw[FD_PITCH])); 
+
 // calculates strength of horizon leveling; 0 = none, 1.0 = most leveling
 STATIC_UNIT_TESTED FAST_CODE_NOINLINE float calcHorizonLevelStrength(void)
 {
@@ -533,9 +536,6 @@ static FAST_CODE_NOINLINE void detectAndSetCrashRecovery(
         }
     }
 }
-
-//DEBUG_SET(DEBUG_BIG_BLACK, 2, lrintf(attitude.raw[FD_ROLL]));
-//DEBUG_SET(DEBUG_BIG_BLACK, 3, lrintf(attitude.raw[FD_PITCH])); 
 
 #endif // USE_ACC
 
