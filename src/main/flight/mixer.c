@@ -434,8 +434,9 @@ static void applyRpmLimiter(mixerRuntime_t *mixer)
     //DEBUG_SET(DEBUG_BIG_BLACK, 0, lrintf(attitude.raw[FD_ROLL]));
     //DEBUG_SET(DEBUG_BIG_BLACK, 1, lrintf(attitude.raw[FD_PITCH])); 
     DEBUG_SET(DEBUG_BIG_BLACK, 0, lrintf(attitude.raw[FD_ROLL]));
-    DEBUG_SET(DEBUG_BIG_BLACK, 1, lrintf(attitude.raw[FD_PITCH])); // attitude.raw[FD_PITCH] - angleTrim->raw[FD_PITCH]
-}
+    //DEBUG_SET(DEBUG_BIG_BLACK, 1, lrintf(attitude.raw[FD_PITCH]));
+    DEBUG_SET(DEBUG_BIG_BLACK, 1, lrintf(attitude.raw[FD_YAW]));
+
 #endif // USE_RPM_LIMIT
 
 static void applyMixToMotors(float motorMix[MAX_SUPPORTED_MOTORS], motorMixer_t *activeMixer)
