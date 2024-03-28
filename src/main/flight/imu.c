@@ -587,9 +587,13 @@ void imuUpdateAttitude(timeUs_t currentTimeUs)
     //DEBUG_SET(DEBUG_BIG_BLACK, 0, lrintf(acc.accADC[X])); // Нам надо в BIG_BLACK значение с акселерометра
     //DEBUG_SET(DEBUG_BIG_BLACK, 1, lrintf(acc.accADC[Y])); // Нам надо в BIG_BLACK значение с акселерометра
     //DEBUG_SET(DEBUG_BIG_BLACK, 2, lrintf(acc.accADC[Z])); // Нам надо в BIG_BLACK значение с акселерометра
-    DEBUG_SET(DEBUG_BIG_BLACK, 2, lrintf(attitude.raw[FD_PITCH] - accelerometerConfig()->accelerometerTrims.raw[FD_PITCH])); // РАБОТАЕТ!!!
+    //DEBUG_SET(DEBUG_BIG_BLACK, 0, lrintf(attitude.raw[FD_PITCH] - accelerometerConfig()->accelerometerTrims.raw[FD_PITCH])); // РАБОТАЕТ!!!
     //DEBUG_SET(DEBUG_BIG_BLACK, 3, lrintf(attitude.raw[FD_ROLL] - accelerometerConfig()->accelerometerTrims.raw[FD_ROLL])); // РАБОТАЕТ!!!
-    DEBUG_SET(DEBUG_BIG_BLACK, 3, lrintf(attitude.raw[FD_YAW] - accelerometerConfig()->accelerometerTrims.raw[FD_YAW])); 
+    //DEBUG_SET(DEBUG_BIG_BLACK, 3, lrintf(attitude.raw[FD_YAW] - accelerometerConfig()->accelerometerTrims.raw[FD_YAW])); 
+    DEBUG_SET(DEBUG_BIG_BLACK, 0, lrintf(attitude.raw[FD_PITCH] - accelerometerConfig()->accelerometerTrims.raw[FD_PITCH])); // РАБОТАЕТ!!!
+    DEBUG_SET(DEBUG_BIG_BLACK, 1, lrintf(attitude.raw[FD_PITCH])); // РАБОТАЕТ!!!
+    DEBUG_SET(DEBUG_BIG_BLACK, 2, lrintf(attitude.raw[FD_ROLL])); // РАБОТАЕТ!!!
+    DEBUG_SET(DEBUG_BIG_BLACK, 3, lrintf(attitude.raw[FD_YAW])); // РАБОТАЕТ!!!
 }
 #endif // USE_ACC
 
