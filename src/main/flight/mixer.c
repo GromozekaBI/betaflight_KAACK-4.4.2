@@ -434,8 +434,8 @@ static void applyRpmLimiter(mixerRuntime_t *mixer)
     //DEBUG_SET(DEBUG_BIG_BLACK, 0, lrintf(attitude.raw[FD_ROLL]));
     //DEBUG_SET(DEBUG_BIG_BLACK, 1, lrintf(attitude.raw[FD_PITCH])); 
     DEBUG_SET(DEBUG_BIG_BLACK, 0, lrintf(attitude.raw[FD_ROLL]));
-    //DEBUG_SET(DEBUG_BIG_BLACK, 1, lrintf(attitude.raw[FD_PITCH]));
-    DEBUG_SET(DEBUG_BIG_BLACK, 1, lrintf(attitude.raw[FD_YAW]));
+    DEBUG_SET(DEBUG_BIG_BLACK, 1, lrintf(attitude.raw[FD_PITCH]));
+    //DEBUG_SET(DEBUG_BIG_BLACK, 1, lrintf(attitude.raw[FD_YAW]));
 
 #endif // USE_RPM_LIMIT
 
