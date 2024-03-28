@@ -416,12 +416,12 @@ static void applyRpmLimiter(mixerRuntime_t *mixer)
     //mixerConfig->rpm_limit_value = mixerConfig()->min_dynamic_rpm_limit_value;
 
     //DEBUG_SET(DEBUG_RPM_LIMIT, 0, lrintf(averageRpm)); // средние обороты на 4х двигателях
-    DEBUG_SET(DEBUG_RPM_LIMIT, 0, lrintf(unsmoothedAverageRpm)); // c учетом фильтрации
+    //DEBUG_SET(DEBUG_RPM_LIMIT, 0, lrintf(unsmoothedAverageRpm)); // c учетом фильтрации
     //DEBUG_SET(DEBUG_RPM_LIMIT, 1, lrintf(mixer->rpmLimiterThrottleScale * 100.0f)); // текущий расчетный предел дросельной заслонки
     //DEBUG_SET(DEBUG_RPM_LIMIT, 3, lrintf(throttle * 100.0f)); //текущее значение газа
-    DEBUG_SET(DEBUG_RPM_LIMIT, 1, lrintf(mixer->rpmLimiterRpmLimit * 1.0f)); //Значение ограничителя в данный момент
-    DEBUG_SET(DEBUG_RPM_LIMIT, 2, lrintf(scale_dynamic_rpm_limit * 1.0f)); //Расчетное значение динамического ограничителя
-    DEBUG_SET(DEBUG_RPM_LIMIT, 3, lrintf(dynamicActivate * 1.0f)); //текущее 6 AUX канала
+    //DEBUG_SET(DEBUG_RPM_LIMIT, 1, lrintf(mixer->rpmLimiterRpmLimit * 1.0f)); //Значение ограничителя в данный момент
+    //DEBUG_SET(DEBUG_RPM_LIMIT, 2, lrintf(scale_dynamic_rpm_limit * 1.0f)); //Расчетное значение динамического ограничителя
+    //DEBUG_SET(DEBUG_RPM_LIMIT, 3, lrintf(dynamicActivate * 1.0f)); //текущее 6 AUX канала
 
     //DEBUG_SET(DEBUG_BIG_BLACK, 0, lrintf(unsmoothedAverageRpm)); // средние обороты на 4х двигателях
     //DEBUG_SET(DEBUG_BIG_BLACK, 1, lrintf(unsmoothedAverageRpm)); // c учетом фильтрации
@@ -431,10 +431,10 @@ static void applyRpmLimiter(mixerRuntime_t *mixer)
     //DEBUG_SET(DEBUG_BIG_BLACK, 5, lrintf(dynamicActivate * 1.0f)); //текущее 6 AUX канала
     //New test  v2
 
-    DEBUG_SET(DEBUG_BIG_BLACK, 0, lrintf(attitude.raw[FD_ROLL]));
-    DEBUG_SET(DEBUG_BIG_BLACK, 1, lrintf(attitude.raw[FD_PITCH])); 
-    DEBUG_SET(DEBUG_BIG_BLACK, 2, lrintf(attitude.raw[FD_ROLL]));
-    DEBUG_SET(DEBUG_BIG_BLACK, 3, lrintf(attitude.raw[FD_PITCH]));
+    DEBUG_SET(DEBUG_RPM_LIMIT, 0, lrintf(attitude.raw[FD_ROLL]));
+    DEBUG_SET(DEBUG_RPM_LIMIT, 1, lrintf(attitude.raw[FD_PITCH])); 
+    DEBUG_SET(DEBUG_RPM_LIMIT, 2, lrintf(attitude.raw[FD_ROLL]));
+    DEBUG_SET(DEBUG_RPM_LIMIT, 3, lrintf(attitude.raw[FD_PITCH]));
 }
 #endif // USE_RPM_LIMIT
 
