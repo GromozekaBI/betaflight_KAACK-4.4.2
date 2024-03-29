@@ -761,15 +761,12 @@ static void writeInterframe(void)
     DEBUG_SET(DEBUG_BIG_BLACK, 10, lrintf(gpsSol.llh.altCm / 10));
     DEBUG_SET(DEBUG_BIG_BLACK, 11, lrintf(gpsSol.groundSpeed));
     DEBUG_SET(DEBUG_BIG_BLACK, 12, lrintf(gpsSol.groundCourse));
-    int32_t gpsValue = 0;
-    const int degreesPartLon = abs(gpsValue) / GPS_DEGREES_DIVIDER;
-    int fractionalPartLon = abs(gpsValue) % GPS_DEGREES_DIVIDER;
-    const int degreesPartLat = abs(gpsValue) / GPS_DEGREES_DIVIDER;
-    int fractionalPartLat = abs(gpsValue) % GPS_DEGREES_DIVIDER;
-    //const int degreesPartLon = abs(gpsValue) / GPS_DEGREES_DIVIDER;
-    //int fractionalPartLon = abs(gpsSol.llh.lon) % GPS_DEGREES_DIVIDER;
-    //const int degreesPartLat = abs(gpsSol.llh.lat) / GPS_DEGREES_DIVIDER;
-    //int fractionalPartLat = abs(gpsSol.llh.lat) % GPS_DEGREES_DIVIDER;
+    //int32_t gpsValue = 0;
+    
+    const int degreesPartLon = gpsSol.llh.lon / GPS_DEGREES_DIVIDER;
+    int fractionalPartLon = gpsSol.llh.lon % GPS_DEGREES_DIVIDER;
+    const int degreesPartLat = gpsSol.llh.lat / GPS_DEGREES_DIVIDER;
+    int fractionalPartLat = gpsSol.llh.lat % GPS_DEGREES_DIVIDER;
     DEBUG_SET(DEBUG_BIG_BLACK, 13, lrintf(degreesPartLon));
     DEBUG_SET(DEBUG_BIG_BLACK, 14, lrintf(fractionalPartLon));
     DEBUG_SET(DEBUG_BIG_BLACK, 15, lrintf(degreesPartLat));
