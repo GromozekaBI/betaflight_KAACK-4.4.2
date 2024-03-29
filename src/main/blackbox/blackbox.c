@@ -812,9 +812,9 @@ static void writeInterframe(void)
     if (testBlackboxCondition(CONDITION(ACC))) {
         blackboxWriteMainStateArrayUsingAveragePredictor(offsetof(blackboxMainState_t, accADC), XYZ_AXIS_COUNT);
     }
-    DEBUG_SET(DEBUG_BIG_BLACK, 0, lrintf((acc.accADC[0] * acc.dev.acc_1G_rec) * 1000));
-    DEBUG_SET(DEBUG_BIG_BLACK, 1, lrintf(acc.accADC[0]));
-    DEBUG_SET(DEBUG_BIG_BLACK, 2, lrintf(acc.accADC[2]));
+    //DEBUG_SET(DEBUG_BIG_BLACK, 0, lrintf((acc.accADC[0] * acc.dev.acc_1G_rec) * 1000));
+    //DEBUG_SET(DEBUG_BIG_BLACK, 1, lrintf(acc.accADC[0]));
+    //DEBUG_SET(DEBUG_BIG_BLACK, 2, lrintf(acc.accADC[2]));
 
     if (testBlackboxCondition(CONDITION(DEBUG_LOG))) {
         blackboxWriteMainStateArrayUsingAveragePredictor(offsetof(blackboxMainState_t, debug), DEBUG16_VALUE_COUNT);
