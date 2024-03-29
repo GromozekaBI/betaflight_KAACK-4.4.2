@@ -805,7 +805,9 @@ static void writeInterframe(void)
     }
     DEBUG_SET(DEBUG_BIG_BLACK, 0, lrintf(blackboxCurrent->gyroADC[0]));
     DEBUG_SET(DEBUG_BIG_BLACK, 1, lrintf(blackboxCurrent->gyroADC[1]));
-    DEBUG_SET(DEBUG_BIG_BLACK, 2, lrintf(blackboxCurrent->gyroADC[2]));
+    DEBUG_SET(DEBUG_BIG_BLACK, 2, lrintf(blackboxCurrent->gyroADCf[1]));
+    DEBUG_SET(DEBUG_BIG_BLACK, 3, lrintf(blackboxCurrent->gyroADC[2]));
+
     if (testBlackboxCondition(CONDITION(ACC))) {
         blackboxWriteMainStateArrayUsingAveragePredictor(offsetof(blackboxMainState_t, accADC), XYZ_AXIS_COUNT);
     }
