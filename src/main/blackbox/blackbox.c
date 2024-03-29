@@ -753,6 +753,7 @@ static void writeInterframe(void)
     //DEBUG_SET(DEBUG_BIG_BLACK, 1, lrintf(blackboxCurrent->setpoint[1])); // угловая скорость (PITCH) работает
     //DEBUG_SET(DEBUG_BIG_BLACK, 2, lrintf(blackboxCurrent->setpoint[2])); // угловая скорость (YAW) работает
     //DEBUG_SET(DEBUG_BIG_BLACK, 3, lrintf(blackboxCurrent->setpoint[3])); // тут надо поправить данные работает
+    //DEBUG_SET(DEBUG_BIG_BLACK, 3, lrintf(mixerGetThrottle() * 1000)); // попробовать так писать газ
 
     if (testBlackboxCondition(CONDITION(RC_COMMANDS))) {
         blackboxWriteTag8_4S16(deltas);
@@ -803,15 +804,19 @@ static void writeInterframe(void)
     if (testBlackboxCondition(CONDITION(GYRO))) {
         blackboxWriteMainStateArrayUsingAveragePredictor(offsetof(blackboxMainState_t, gyroADC), XYZ_AXIS_COUNT);
     }
-    DEBUG_SET(DEBUG_BIG_BLACK, 0, lrintf(blackboxCurrent->gyroADC[0]));
-    DEBUG_SET(DEBUG_BIG_BLACK, 1, lrintf(blackboxCurrent->gyroADC[1]));
-    DEBUG_SET(DEBUG_BIG_BLACK, 2, lrintf(gyro.gyroADCf[1]));
-    DEBUG_SET(DEBUG_BIG_BLACK, 3, lrintf(gyro.gyroADC[1]));
+    //DEBUG_SET(DEBUG_BIG_BLACK, 0, lrintf(gyro.gyroADCf[0])); // Угловая скорость (ROLL) работатет
+    //DEBUG_SET(DEBUG_BIG_BLACK, 1, lrintf(gyro.gyroADCf[1])); // Угловая скорость (PITCH) работатет
+    //DEBUG_SET(DEBUG_BIG_BLACK, 2, lrintf(gyro.gyroADCf[2])); // Угловая скоротсь (YAW) работатет
+    DEBUG_SET(DEBUG_BIG_BLACK, 3, lrintf(gyro.gyroADCf[2] * blackboxHighResolutionScale)); // попробовать, може так точнее
     //GYRO_FILTER_DEBUG_SET(DEBUG_GYRO_FILTERED, axis, lrintf(gyroADCf));
         //gyro.gyroADCf[axis] = gyroADCf;
     if (testBlackboxCondition(CONDITION(ACC))) {
         blackboxWriteMainStateArrayUsingAveragePredictor(offsetof(blackboxMainState_t, accADC), XYZ_AXIS_COUNT);
     }
+    DEBUG_SET(DEBUG_BIG_BLACK, 0, lrintf(acc.accADC[0]));
+    DEBUG_SET(DEBUG_BIG_BLACK, 1, lrintf(acc.accADC[1]));
+    DEBUG_SET(DEBUG_BIG_BLACK, 2, lrintf(acc.accADC[2]));
+
     if (testBlackboxCondition(CONDITION(DEBUG_LOG))) {
         blackboxWriteMainStateArrayUsingAveragePredictor(offsetof(blackboxMainState_t, debug), DEBUG16_VALUE_COUNT);
     }
