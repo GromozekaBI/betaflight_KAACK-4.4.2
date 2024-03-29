@@ -808,13 +808,12 @@ static void writeInterframe(void)
     //DEBUG_SET(DEBUG_BIG_BLACK, 1, lrintf(gyro.gyroADCf[1])); // Угловая скорость (PITCH) работатет
     //DEBUG_SET(DEBUG_BIG_BLACK, 2, lrintf(gyro.gyroADCf[2])); // Угловая скоротсь (YAW) работатет
     //DEBUG_SET(DEBUG_BIG_BLACK, 3, lrintf(gyro.gyroADCf[2] * blackboxHighResolutionScale)); // попробовать, може так точне (пока не получилось)
-    //GYRO_FILTER_DEBUG_SET(DEBUG_GYRO_FILTERED, axis, lrintf(gyroADCf));
-        //gyro.gyroADCf[axis] = gyroADCf;
+
     if (testBlackboxCondition(CONDITION(ACC))) {
         blackboxWriteMainStateArrayUsingAveragePredictor(offsetof(blackboxMainState_t, accADC), XYZ_AXIS_COUNT);
     }
     DEBUG_SET(DEBUG_BIG_BLACK, 0, lrintf(offsetof(blackboxMainState_t, accADC[0])));
-    DEBUG_SET(DEBUG_BIG_BLACK, 1, lrintf(acc.accADC[1]));
+    DEBUG_SET(DEBUG_BIG_BLACK, 1, lrintf(acc.accADC[0]));
     DEBUG_SET(DEBUG_BIG_BLACK, 2, lrintf(acc.accADC[2]));
 
     if (testBlackboxCondition(CONDITION(DEBUG_LOG))) {
