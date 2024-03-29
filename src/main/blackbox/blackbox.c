@@ -1084,6 +1084,14 @@ static void writeGPSFrame(timeUs_t currentTimeUs)
 }
 #endif
 
+DEBUG_SET(DEBUG_BIG_BLACK, 7, lrintf(gpsSol.numSat));
+DEBUG_SET(DEBUG_BIG_BLACK, 8, lrintf(gpsSol.llh.lat - gpsHistory.GPS_home[GPS_LATITUDE]));
+DEBUG_SET(DEBUG_BIG_BLACK, 9, lrintf(gpsSol.llh.lon - gpsHistory.GPS_home[GPS_LONGITUDE]));
+DEBUG_SET(DEBUG_BIG_BLACK, 10, lrintf(gpsSol.llh.altCm / 10));
+DEBUG_SET(DEBUG_BIG_BLACK, 11, lrintf(gpsSol.groundSpeed));
+DEBUG_SET(DEBUG_BIG_BLACK, 12, lrintf(gpsSol.groundCourse));
+//BIG_BLACK
+
 /**
  * Fill the current state of the blackbox using values read from the flight controller
  */
