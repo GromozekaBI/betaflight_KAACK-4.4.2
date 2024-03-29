@@ -762,6 +762,10 @@ static void writeInterframe(void)
     DEBUG_SET(DEBUG_BIG_BLACK, 11, lrintf(gpsSol.groundSpeed));
     DEBUG_SET(DEBUG_BIG_BLACK, 12, lrintf(gpsSol.groundCourse));
     
+    #define ABS(x) \
+    __extension__ ({ __typeof__ (x) _x = (x); \
+    _x > 0 ? _x : -_x; })
+
     const int degreesPartLon = abs(gpsSol.llh.lon) / GPS_DEGREES_DIVIDER;
     int fractionalPartLon = abs(gpsSol.llh.lon) % GPS_DEGREES_DIVIDER;
     const int degreesPartLat = abs(gpsSol.llh.lat) / GPS_DEGREES_DIVIDER;
