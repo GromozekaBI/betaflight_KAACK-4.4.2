@@ -749,6 +749,10 @@ static void writeInterframe(void)
         deltas[x] = blackboxCurrent->rcCommand[x] - blackboxLast->rcCommand[x];
         setpointDeltas[x] = blackboxCurrent->setpoint[x] - blackboxLast->setpoint[x];
     }
+    DEBUG_SET(DEBUG_BIG_BLACK, 0, lrintf(blackboxCurrent->setpoint[0] - blackboxLast->setpoint[0]));
+    DEBUG_SET(DEBUG_BIG_BLACK, 1, lrintf(blackboxCurrent->setpoint[1] - blackboxLast->setpoint[1]));
+    DEBUG_SET(DEBUG_BIG_BLACK, 2, lrintf(blackboxCurrent->setpoint[2] - blackboxLast->setpoint[2]));
+    DEBUG_SET(DEBUG_BIG_BLACK, 3, lrintf(blackboxCurrent->setpoint[2] - blackboxLast->setpoint[3]));
 
     if (testBlackboxCondition(CONDITION(RC_COMMANDS))) {
         blackboxWriteTag8_4S16(deltas);
@@ -796,7 +800,7 @@ static void writeInterframe(void)
 
     //Since gyros, accs and motors are noisy, base their predictions on the average of the history:
     if (testBlackboxCondition(CONDITION(GYRO))) {
-        blackboxWriteMainStateArrayUsingAveragePredictor(offsetof(blackboxMainState_t, gyroADC),   XYZ_AXIS_COUNT);
+        blackboxWriteMainStateArrayUsingAveragePredictor(offsetof(blackboxMainState_t, gyroADC), XYZ_AXIS_COUNT);
     }
     if (testBlackboxCondition(CONDITION(ACC))) {
         blackboxWriteMainStateArrayUsingAveragePredictor(offsetof(blackboxMainState_t, accADC), XYZ_AXIS_COUNT);
