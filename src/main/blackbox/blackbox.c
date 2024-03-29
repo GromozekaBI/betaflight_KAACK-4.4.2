@@ -763,10 +763,10 @@ static void writeInterframe(void)
     DEBUG_SET(DEBUG_BIG_BLACK, 12, lrintf(gpsSol.groundCourse));
     int32_t gpsValue = 0;
     const int degreesPartLon = abs(gpsValue) / GPS_DEGREES_DIVIDER;
-    int fractionalPartLon = abs(gpsValue % GPS_DEGREES_DIVIDER;
+    int fractionalPartLon = abs(gpsValue) % GPS_DEGREES_DIVIDER;
     const int degreesPartLat = abs(gpsValue) / GPS_DEGREES_DIVIDER;
     int fractionalPartLat = abs(gpsValue) % GPS_DEGREES_DIVIDER;
-    const int degreesPartLon = abs(gpsValue) / GPS_DEGREES_DIVIDER;
+    //const int degreesPartLon = abs(gpsValue) / GPS_DEGREES_DIVIDER;
     //int fractionalPartLon = abs(gpsSol.llh.lon) % GPS_DEGREES_DIVIDER;
     //const int degreesPartLat = abs(gpsSol.llh.lat) / GPS_DEGREES_DIVIDER;
     //int fractionalPartLat = abs(gpsSol.llh.lat) % GPS_DEGREES_DIVIDER;
