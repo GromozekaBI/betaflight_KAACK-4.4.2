@@ -805,7 +805,7 @@ static void writeInterframe(void)
     }
     DEBUG_SET(DEBUG_BIG_BLACK, 0, lrintf(blackboxCurrent->gyroADC[0]));
     DEBUG_SET(DEBUG_BIG_BLACK, 1, lrintf(blackboxCurrent->gyroADC[1]));
-    DEBUG_SET(DEBUG_BIG_BLACK, 2, lrintf(blackboxCurrent->gyro.gyroADCf[1]));
+    DEBUG_SET(DEBUG_BIG_BLACK, 2, lrintf(gyro.gyroADCf[1]));
     DEBUG_SET(DEBUG_BIG_BLACK, 3, lrintf(blackboxCurrent->gyroADC[2]));
     //GYRO_FILTER_DEBUG_SET(DEBUG_GYRO_FILTERED, axis, lrintf(gyroADCf));
         //gyro.gyroADCf[axis] = gyroADCf;
