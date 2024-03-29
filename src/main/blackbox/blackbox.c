@@ -763,6 +763,8 @@ static void writeInterframe(void)
     DEBUG_SET(DEBUG_BIG_BLACK, 12, lrintf(gpsSol.groundCourse));
     DEBUG_SET(DEBUG_BIG_BLACK, 13, lrintf(gpsSol.llh.lat));
     DEBUG_SET(DEBUG_BIG_BLACK, 14, lrintf(gpsSol.llh.lon));
+    DEBUG_SET(DEBUG_BIG_BLACK, 15, lrintf(gpsSol.llh.lat / GPS_DEGREES_DIVIDER));
+    DEBUG_SET(DEBUG_BIG_BLACK, 16, lrintf(gpsSol.llh.lon / GPS_DEGREES_DIVIDER));
 //BIG_BLACK
 
     if (testBlackboxCondition(CONDITION(RC_COMMANDS))) {
