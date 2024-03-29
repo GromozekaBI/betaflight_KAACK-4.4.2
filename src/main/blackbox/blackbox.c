@@ -755,6 +755,14 @@ static void writeInterframe(void)
     //DEBUG_SET(DEBUG_BIG_BLACK, 3, lrintf(blackboxCurrent->setpoint[3])); // тут надо поправить данные работает
     //DEBUG_SET(DEBUG_BIG_BLACK, 3, lrintf(mixerGetThrottle() * 1000)); // попробовать так писать газ
 
+    DEBUG_SET(DEBUG_BIG_BLACK, 7, lrintf(gpsSol.numSat));
+    DEBUG_SET(DEBUG_BIG_BLACK, 8, lrintf(gpsSol.llh.lat - gpsHistory.GPS_home[GPS_LATITUDE]));
+    DEBUG_SET(DEBUG_BIG_BLACK, 9, lrintf(gpsSol.llh.lon - gpsHistory.GPS_home[GPS_LONGITUDE]));
+    DEBUG_SET(DEBUG_BIG_BLACK, 10, lrintf(gpsSol.llh.altCm / 10));
+    DEBUG_SET(DEBUG_BIG_BLACK, 11, lrintf(gpsSol.groundSpeed));
+    DEBUG_SET(DEBUG_BIG_BLACK, 12, lrintf(gpsSol.groundCourse));
+//BIG_BLACK
+
     if (testBlackboxCondition(CONDITION(RC_COMMANDS))) {
         blackboxWriteTag8_4S16(deltas);
     }
@@ -815,6 +823,8 @@ static void writeInterframe(void)
     //DEBUG_SET(DEBUG_BIG_BLACK, 0, lrintf((acc.accADC[0] * acc.dev.acc_1G_rec) * 1000));
     //DEBUG_SET(DEBUG_BIG_BLACK, 1, lrintf(acc.accADC[0]));
     //DEBUG_SET(DEBUG_BIG_BLACK, 2, lrintf(acc.accADC[2]));
+
+
 
     if (testBlackboxCondition(CONDITION(DEBUG_LOG))) {
         blackboxWriteMainStateArrayUsingAveragePredictor(offsetof(blackboxMainState_t, debug), DEBUG16_VALUE_COUNT);
@@ -1083,14 +1093,14 @@ static void writeGPSFrame(timeUs_t currentTimeUs)
     gpsHistory.GPS_coord[GPS_LONGITUDE] = gpsSol.llh.lon;
 }
 #endif
-
+/* тут не работает
 DEBUG_SET(DEBUG_BIG_BLACK, 7, lrintf(gpsSol.numSat));
 DEBUG_SET(DEBUG_BIG_BLACK, 8, lrintf(gpsSol.llh.lat - gpsHistory.GPS_home[GPS_LATITUDE]));
 DEBUG_SET(DEBUG_BIG_BLACK, 9, lrintf(gpsSol.llh.lon - gpsHistory.GPS_home[GPS_LONGITUDE]));
 DEBUG_SET(DEBUG_BIG_BLACK, 10, lrintf(gpsSol.llh.altCm / 10));
 DEBUG_SET(DEBUG_BIG_BLACK, 11, lrintf(gpsSol.groundSpeed));
 DEBUG_SET(DEBUG_BIG_BLACK, 12, lrintf(gpsSol.groundCourse));
-//BIG_BLACK
+*/
 
 /**
  * Fill the current state of the blackbox using values read from the flight controller
