@@ -753,7 +753,7 @@ static void writeInterframe(void)
     //DEBUG_SET(DEBUG_BIG_BLACK, 1, lrintf(blackboxCurrent->setpoint[1])); // угловая скорость (PITCH) работает
     //DEBUG_SET(DEBUG_BIG_BLACK, 2, lrintf(blackboxCurrent->setpoint[2])); // угловая скорость (YAW) работает
     //DEBUG_SET(DEBUG_BIG_BLACK, 3, lrintf(blackboxCurrent->setpoint[3])); // тут надо поправить данные работает
-    DEBUG_SET(DEBUG_BIG_BLACK, 3, lrintf(mixerGetThrottle() * 1000)); // попробовать так писать газ
+    //DEBUG_SET(DEBUG_BIG_BLACK, 3, lrintf(mixerGetThrottle() * 1000)); // попробовать так писать газ
 
     if (testBlackboxCondition(CONDITION(RC_COMMANDS))) {
         blackboxWriteTag8_4S16(deltas);

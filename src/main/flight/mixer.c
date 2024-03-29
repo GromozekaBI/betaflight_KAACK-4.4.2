@@ -373,6 +373,8 @@ static void applyRpmLimiter(mixerRuntime_t *mixer)
     throttle = constrainf(throttle - pidOutput, 0.0f, 1.0f);
     prevError = error;
 
+    DEBUG_SET(DEBUG_BIG_BLACK, 3, lrintf(throttle * 1000.0f)); //Значение газа, которое передается на мотор
+
     float dynamic = rcData[AUX5] - 1000.0f; // считываем значение с 5 канала
     dynamic = constrainf(dynamic / (PWM_RANGE_MAX - PWM_RANGE_MIN), 0.0f, 1.0f);
     dynamic = dynamic * 1000.0f; // формат значений 0..1000
