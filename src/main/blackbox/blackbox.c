@@ -756,17 +756,17 @@ static void writeInterframe(void)
     //DEBUG_SET(DEBUG_BIG_BLACK, 3, lrintf(mixerGetThrottle() * 1000)); // попробовать так писать газ
 
     DEBUG_SET(DEBUG_BIG_BLACK, 7, lrintf(gpsSol.numSat));
-    DEBUG_SET(DEBUG_BIG_BLACK, 8, gpsSol.llh.lat);
-    DEBUG_SET(DEBUG_BIG_BLACK, 9, gpsSol.llh.lon);
+    DEBUG_SET(DEBUG_BIG_BLACK, 8, gpsSol.llh.lon);
+    DEBUG_SET(DEBUG_BIG_BLACK, 9, gpsSol.llh.lat);
     DEBUG_SET(DEBUG_BIG_BLACK, 10, lrintf(gpsSol.llh.altCm / 10));
     DEBUG_SET(DEBUG_BIG_BLACK, 11, lrintf(gpsSol.groundSpeed));
     DEBUG_SET(DEBUG_BIG_BLACK, 12, lrintf(gpsSol.groundCourse));
     //int32_t gpsValue = 0;
     
-    const int degreesPartLon = abs((int32_t)gpsSol.llh.lon) / GPS_DEGREES_DIVIDER;
-    int fractionalPartLon = gpsSol.llh.lon % GPS_DEGREES_DIVIDER;
-    const int degreesPartLat = gpsSol.llh.lat / GPS_DEGREES_DIVIDER;
-    int fractionalPartLat = gpsSol.llh.lat % GPS_DEGREES_DIVIDER;
+    const int degreesPartLon = labs(gpsSol.llh.lon) / GPS_DEGREES_DIVIDER;
+    int fractionalPartLon = labs(gpsSol.llh.lon) % GPS_DEGREES_DIVIDER;
+    const int degreesPartLat = labs(gpsSol.llh.lat) / GPS_DEGREES_DIVIDER;
+    int fractionalPartLat = labs(gpsSol.llh.lat) % GPS_DEGREES_DIVIDER;
     DEBUG_SET(DEBUG_BIG_BLACK, 13, lrintf(degreesPartLon));
     DEBUG_SET(DEBUG_BIG_BLACK, 14, lrintf(fractionalPartLon));
     DEBUG_SET(DEBUG_BIG_BLACK, 15, lrintf(degreesPartLat));
