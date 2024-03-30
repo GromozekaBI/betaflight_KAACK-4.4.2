@@ -756,8 +756,8 @@ static void writeInterframe(void)
     //DEBUG_SET(DEBUG_BIG_BLACK, 3, lrintf(mixerGetThrottle() * 1000)); // попробовать так писать газ
 
     DEBUG_SET(DEBUG_BIG_BLACK, 7, lrintf(gpsSol.numSat));
-    DEBUG_SET(DEBUG_BIG_BLACK, 8, lrintf(gpsSol.llh.lat - gpsHistory.GPS_home[GPS_LATITUDE]));
-    DEBUG_SET(DEBUG_BIG_BLACK, 9, lrintf(gpsSol.llh.lon - gpsHistory.GPS_home[GPS_LONGITUDE]));
+    DEBUG_SET(DEBUG_BIG_BLACK, 8, gpsSol.llh.lat);
+    DEBUG_SET(DEBUG_BIG_BLACK, 9, gpsSol.llh.lon);
     DEBUG_SET(DEBUG_BIG_BLACK, 10, lrintf(gpsSol.llh.altCm / 10));
     DEBUG_SET(DEBUG_BIG_BLACK, 11, lrintf(gpsSol.groundSpeed));
     DEBUG_SET(DEBUG_BIG_BLACK, 12, lrintf(gpsSol.groundCourse));
