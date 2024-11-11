@@ -413,7 +413,7 @@ void updateArmingStatus(void)
 
             // If arming is disabled and the ARM switch is on
             if (isArmingDisabled()
-                && !ignoreGyro
+            //    && !ignoreGyro // попыкта отключить проверку на калибровку гироскопа
                 && !ignoreThrottle
                 && IS_RC_MODE_ACTIVE(BOXARM)) {
                 setArmingDisabled(ARMING_DISABLED_ARM_SWITCH);
